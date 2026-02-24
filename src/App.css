@@ -1,42 +1,140 @@
-#root {
-  max-width: 1280px;
+/* App layout for CV editor */
+
+.app {
+  max-width: 1100px;
+  margin: 24px auto;
+  padding: 16px;
+  display: flex;
+  justify-content: center;
+}
+
+.editor {
+  display: grid;
+  grid-template-columns: 320px 420px;
+  gap: 32px;
+  align-items: start;
+  width: min(800px, 96%);
+}
+
+.inputCard {
+  background: #f7f7f8;
+  color: #111;
+  border-radius: 8px;
+  padding: 20px;
+  box-shadow: 0 6px 18px rgba(0,0,0,0.25);
+  text-align: left;
+  max-height: 72vh;
+  overflow: auto;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.inputCard h2 {
+  margin: 0 0 12px 0;
+}
+
+.field {
+  display: block;
+  margin-bottom: 16px;
+}
+.field .label { margin-bottom: 6px; color: #333; }
+.field input {
+  width: 100%;
+  padding: 10px 0px;
+  border-radius: 6px;
+  border: 1px solid #d8d8df;
+  background: #fff;
+  color: #111;
+}
+.inputCard textarea {
+  width: 100%;
+  padding: 10px 0px;
+  border-radius: 6px;
+  border: 1px solid #d8d8df;
+  background: #fff;
+  color: #111;
+  resize: vertical;
+}
+
+.sectionTitle {
+  font-weight: 700;
+  margin: 10px 0 8px 0;
+}
+
+.actions {
+  margin-top: 12px;
+  display: flex;
+  gap: 12px;
+}
+.printBtn {
+  background: linear-gradient(180deg,#0a8a11,#066f0e);
+  color: #fff;
+  padding: 10px 16px;
+  border-radius: 8px;
+  border: none;
+  width: 100%;
+  box-shadow: 0 4px 8px rgba(6,111,14,0.18);
+}
+
+.inputCard + .actions { margin-top: 14px }
+
+.previewCard {
+  background: #fff;
+  color: #213547;
+  border-radius: 8px;
+  padding: 28px 36px;
+  box-shadow: 0 6px 22px rgba(0,0,0,0.25);
+  min-height: 360px;
+  box-sizing: border-box;
   margin: 0 auto;
-  padding: 2rem;
-  text-align: center;
 }
 
-.logo {
-  height: 6em;
-  padding: 1.5em;
-  will-change: filter;
-  transition: filter 300ms;
-}
-.logo:hover {
-  filter: drop-shadow(0 0 2em #646cffaa);
-}
-.logo.react:hover {
-  filter: drop-shadow(0 0 2em #61dafbaa);
+
+.previewHeader { display:flex; flex-direction:column; align-items:center; margin-bottom:12px }
+.previewHeader .name { font-size:28px; font-weight:800; color:#08323a; }
+.previewHeader .headline { font-size:20px; color:#0b6b6a; opacity:0.9; margin-top:6px }
+
+.cvTitle {
+  display:none;
 }
 
-@keyframes logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.cvSection { margin-top: 18px; }
+.cvSection h3 {
+  margin: 0 0 6px 0;
+  letter-spacing: 0.6px;
 }
-
-@media (prefers-reduced-motion: no-preference) {
-  a:nth-of-type(2) .logo {
-    animation: logo-spin infinite 20s linear;
-  }
+.cvDivider {
+  height: 3px;
+  width: 60px;
+  background: #0b7b77;
+  margin: 6px 0 12px 0;
 }
+.profileText { color: #234; }
 
-.card {
-  padding: 2em;
-}
+/* List editor styles (left column) */
+.listEditor { background: transparent; padding: 0; margin-top: 0; border-radius: 6px; box-shadow: none }
+.listEditor h3 { margin: 6px 0 8px 0 }
+.listRow { border-top: 1px solid #eef0f2; padding: 10px 0 }
+.listRow:first-of-type { border-top: none }
+.listRow input { width: 100%; padding: 8px 10px; margin-bottom: 8px; border: 1px solid #e3e6e9; border-radius:6px }
+.listRow .dates { display:flex; gap:8px }
+.listRow textarea { width: 100%; min-height: 56px; padding: 8px 10px; border: 1px solid #e3e6e9; border-radius:6px }
+.addBtn { background: #0b7b77; color:#fff; border:none; padding:8px 12px; border-radius:6px }
+.smallBtn { background: transparent; color:#b33; border:1px solid #f1dede; padding:6px 8px; border-radius:6px }
 
-.read-the-docs {
-  color: #888;
+/* Preview list items */
+.listItem { margin-bottom: 12px }
+.itemTitle { font-weight:700; color:#08323a }
+.muted { color:#556; font-weight:400; margin-left:8px }
+.itemDates { color:#557; font-size:0.9em; margin-bottom:6px }
+.itemDesc { color:#234 }
+
+/* Print styles: only show the preview card */
+@media print {
+  body * { visibility: hidden; }
+  #cv-preview, #cv-preview * { visibility: visible; }
+  #cv-preview { position: absolute; left: 0; top: 0; width: 100%; }
+  .previewCard { box-shadow: none; border-radius: 0; padding: 0.8in; }
 }

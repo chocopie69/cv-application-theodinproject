@@ -1,35 +1,40 @@
 import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
 import './App.css'
+import InputForm from './components/InputForm'
+import Preview from './components/Preview'
+import PrintButton from './components/PrintButton'
+import ExperienceEditor from './components/ExperienceEditor'
+import EducationEditor from './components/EducationEditor'
 
-function App() {
-  const [count, setCount] = useState(0)
+export default function App() {
+  const [name, setName] = useState('')
+  const [email, setEmail] = useState('')
+  const [phone, setPhone] = useState('')
+  const [profile, setProfile] = useState('')
+  const [experience, setExperience] = useState([])
+  const [education, setEducation] = useState([])
 
   return (
-    <>
-      <div>
-        <a href="https://vite.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
+    <div className="app">
+      <div className="editor">
+        <div className="inputCard">
+          <InputForm
+            name={name}
+            email={email}
+            phone={phone}
+            profile={profile}
+            setName={setName}
+            setEmail={setEmail}
+            setPhone={setPhone}
+            setProfile={setProfile}
+          />
+          <ExperienceEditor experience={experience} setExperience={setExperience} />
+          <EducationEditor education={education} setEducation={setEducation} />
+          <PrintButton />
+        </div>
+
+        <Preview name={name} email={email} phone={phone} profile={profile} experience={experience} education={education} />
       </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.jsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
+    </div>
   )
 }
-
-export default App
